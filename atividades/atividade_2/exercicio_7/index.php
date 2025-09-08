@@ -12,7 +12,7 @@
 
     <h2>Conversor de Temperaturas</h2>
 
-    <form method="POST" action="calcular.php">
+    <form method="POST" action="">
 
         <label>Informe a temperatura:</label>
         <input type="number" name="valor" placeholder="Ex: 32" required><br>
