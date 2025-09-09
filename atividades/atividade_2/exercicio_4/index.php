@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login com Sessões</title>
-    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="public/css/estilo.css">
 </head>
 
 <body>
@@ -23,7 +23,7 @@ session_start();
         <label>Usuário:</label><br>
         <input type="text" name="usuario" required><br><br>
 
-        <label>Senha:</label>
+        <label>Senha:</label><br>
         <input type="password" name="senha" required><br><br>
 
         <button type="submit">Entrar</button>

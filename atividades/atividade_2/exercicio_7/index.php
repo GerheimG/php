@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversor de Temperaturas</title>
-    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="public/css/estilo.css">
 </head>
 
 <body>
 
     <h2>Conversor de Temperaturas</h2>
 
-    <form method="POST" action="">
+    <form method="POST" action="public/calcular.php">
 
         <label>Informe a temperatura:</label>
         <input type="number" name="valor" placeholder="Ex: 32" required><br>

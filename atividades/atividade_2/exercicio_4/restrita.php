@@ -13,6 +13,7 @@ if (!isset($_SESSION['usuario'])) {
 <head>
     <meta charset="UTF-8">
     <title>Área Restrita</title>
+    <link rel="stylesheet" href="public/css/estilo.css">
 </head>
 <body>
     <h1>Bem-vindo, <?php echo htmlspecialchars($_SESSION['nome']); ?>!</h1>

@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['limpar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistemas de Notas</title>
-    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="public/css/estilo.css">
 </head>
 
 <body>
@@ -80,9 +80,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['limpar'])) {
                 <?php
                     $soma = $aluno['Nota1'] + $aluno['Nota2'] + $aluno['Nota3'] + $aluno['Nota4'];
                     $media = $soma / 4;
+                    if ($media >= 10) {
+                        $situ = 'Aprovado';
+                    } else if ($media < 10 && $media >= 5) {
+                        $situ = 'Recuperação';
+                    } else {
+                        $situ = 'Reprovado';
+                    }
                 ?>
                 <li><strong>Soma:</strong><?= $soma ?></li>
-                <li><strong>Média:</strong><?= number_format($media, 2, ',', '.') ?></li>
+                <li><strong>Média:</strong><?=$media ?></li>
+                <li><strong>Situação:</strong><?=$situ ?></li>
             </ul>
             <hr>
         <?php endforeach; ?>
