@@ -2,7 +2,7 @@
 header("Content-Type: application/json");
 include("../conexao/conexao.php");
 
-$dados = json_decode(file_get_contents("php://inpu"), true);
+$dados = json_decode(file_get_contents("php://input"), true);
 
 /**
  * Extrai os valores id e concluida do array e força a conversão para inteiros,

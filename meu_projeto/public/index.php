@@ -26,15 +26,82 @@
             const lista = document.getElementById("listaTarefas");
             lista.innerHTML = ""; // lIMPA ANTES DE LISTAR
 
-            tarefas.foreach(t => {
+            tarefas.forEach(t => {
                 const li = document.createElement("li");
                 li.textContent = t.titulo;
 
                 if (t.concluida == 1) {
                     li.style.textDecoration = "line-through";
-                }    
-            })
+                }
+
+                // Botao de concluir
+                const btnConcluir = document.createElement("button");
+                btnConcluir.textContent = t.concluida == 1 ? "Desfazer" : "Concluir";
+                btnConcluir.onclick = async () => {
+                    await fetch("../api/atualizar.php", {
+                        method: "POST",
+                        body: JSON.stringify({
+                            id: t.id,
+                            concluida: t.concluida == 1 ? 0 : 1
+                        })
+                    });
+                    carregarTarefas();
+                };
+
+                // Botao editar
+                const btnEditar = document.createElement("button");
+                btnEditar.textContent = "Editar";
+                btnEditar.onclick = async () => {
+                    // Abre prompt para editar o texto
+                    const novoTitulo = prompt("Editar tarefa:", t.titulo);
+                    if (novoTitulo && novoTitulo.trim() !== "") {
+                        await fetch("../api/editar.php", {
+                            method:"POST",
+                            body: JSON.stringify({
+                                id: t.id,
+                                titulo: novoTitulo
+                            })
+                        });
+                        carregarTarefas();
+                    }
+                };
+
+                // Botao excluir
+                const btnExcluir = document.createElement("button");
+                btnExcluir.textContent = "Excluir";
+                btnExcluir.onclick = async () => {
+                    await fetch("../api/excluir.php", {
+                        method:"POST",
+                        body: JSON.stringify({
+                            id: t.id
+                        })
+                    });
+                    carregarTarefas();
+                };
+
+                // Adiciona tudo no item da lista
+                li.append(" ", btnConcluir, " ", btnEditar, " ", btnExcluir);
+                lista.appendChild(li);
+            });
         }
+
+        // Adicionar nova tarefa
+        document.getElementById("btnAdicionar").onclick = async () => {
+            const titulo = document.getElementById("novaTarefa").value;
+            if (titulo.trim() === "") return;
+
+            await fetch("../api/adicionar.php", {
+                method: "POST",
+                body: JSON.stringify({
+                    titulo
+                })
+            });
+            document.getElementById("novaTarefa").value = "";
+            carregarTarefas();
+        };
+
+        // Carrega ao abrir a página
+        carregarTarefas();
     </script>
     
 </body>
